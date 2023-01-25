@@ -46,3 +46,27 @@ const data = [
         hobbies: ['gazpacho', 'working']
     }
 ]
+
+// Podaj imiona postaci z najwieksza liczba dzieci
+function hasMostOffspring(persons){
+    function offspringsSort(a, b) {
+        return b.offsprings - a.offsprings
+    }
+    persons.sort(offspringsSort)
+    console.log(persons[0].name)
+}
+
+// Podaj imie pradawnego najstarszego stworzenia
+function whoseOldest(persons){
+    function offspringsSort(a, b) {
+        return b.age - a.age
+    }
+    persons.sort(offspringsSort)
+    console.log(persons[0].name)
+}
+
+// Podaj imiona postaci, ktore kochaja Shreka
+const personsWhoLovesShrek = (elements) => elements
+    .filter((element) => element.hobbies.includes('shrek'))
+    .map((element) => element.name)
+    .join(', ')
