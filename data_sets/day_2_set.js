@@ -45,28 +45,36 @@ const trucks = [
 
 
 // 1. Wyświetl nazwy ciężarówek posortowane według wagi od najmniejszej do najwiekszej.
-function hasMostOffspring(persons){
+function hasMostOffspring(elements){
     function offspringsSort(a, b) {
         return b.weight - a.weight
     }
-    persons.sort(offspringsSort)
-    console.log(persons.map((persons) => persons.truck).join(', '))
+    elements.sort(offspringsSort)
+    console.log(elements.map((elements) => elements.truck).join(', '))
 }
 
 
 // 2. Wyświetl ciężarówki z mocą powyżej 450 hp  i imiona szoferów.
- function getAgeOfPeopleWithNameLengthGreaterThan5(persons){
-     const ageArray = [];
+const nameDriversOfLargeTrucks = (elements) => {
+    const result = []
 
-
-    for (const person of persons){
-        if ( 450 < Number(person.hp)){
-            ageArray.push(person.truck)
+    for (const element of elements){
+        if(element.hp > 450){
+            result.push(element.truck + ' - ' + element.truck_driver)
         }
     }
-     return ageArray
+    return result
 }
 
 
 // 3. Wyświetl szoferów na literę J oraz ich ulubione potrawy.
 
+function favMealOfDriversByJ(elements){
+    const result = []
+    for (const element of elements){
+        if(element.truck_driver[0] === 'J'){
+            result.push(element.truck_driver + ' lubi jeść: ' + element.favourite_meal.join(', '))
+        }
+    }
+    return result
+}
