@@ -73,18 +73,26 @@ const football = [
 
 // 1. Która drużyna nigdy nie wygrała Ligi Mistrzów? Podaj nazwę klubu i ile lat minęło od jego powstania.
 
-function getLoser(elements) {
-    for (const element of elements){
-        for (const title of element.titles){
-            if (title.ChampionsLeague === 0){
-                return element.team + ' istnieje od ' + element.
-            }
+function getLosers(elements) {
+    const y = new Date();
+    return elements.filter(({titles}) => titles.ChampionsLeague === 0).map(({team, foundingYear}) =>[team, y.getFullYear() - foundingYear])
+
+}
+
+// 2. Posortuj kluby w kolejności od najstarszego do najmłodszego trenera. Wyświetl nazwy drużyn, jeśli klub i trener są tej samej narodowości, to nazwa klubu ma być cała wielkimi literami.
+function teamSort(elements) {
+    for (const element of elements.sort((a, b) => a.coach.age - b.coach.age)){
+        if (element.nationality === element.coach.nationality) {
+            console.log(element.team.toUpperCase())
+        } else {
+            console.log(element.team)
         }
     }
 }
 
-// 2. Posortuj kluby w kolejności od najstarszego do najmłodszego trenera. Wyświetl nazwy drużyn, jeśli klub i trener są tej samej narodowości, to nazwa klubu ma być cała wielkimi literami.
 
 // 3. Wyświetl liczbę pucharów zdobytych przez kluby z Hiszpanii (zwykła liga + liga mistrzów)
 
-
+function numberOfWins(elements) {
+    return elements.filter(({nationality}) => nationality === "Spain").reduce((acc, ce) => acc + (ce.titles.ChampionsLeague + ce.titles.LeagueTitles),0)
+}
