@@ -133,5 +133,15 @@ scales = [
 ]
 
 // 1. Return an alphabetical list of all heptatonic (7 note) scales.
+
+const return7 = scales.filter((scale) => scale.chords.length === 7).sort((a,b) => a.name.localeCompare(b.name))
 // 2. Which chord quality/ies is the rarest among all the listed scales?
+const quality = (elements) =>{
+    resultquality = [];
+    for (const element of elements){
+        resultquality.push({'${element.chords.quality}':1})
+    }
+    return resultquality
+}
+
 // 3. Make an array with a list of all the provided examples in minor scales in order of ascending title length.
